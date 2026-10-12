@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Global DNA &amp; Protein Sequence Alignment | DSA-3 Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap"><b>Needleman Wunsch Aligner</b><a href="#home" data-page="home" class="nav-link active">Home</a><a href="#align" data-page="align" class="nav-link">Aligner</a><a href="#history" data-page="history" class="nav-link">History</a><a href="#how" data-page="how" class="nav-link">How it works</a><a href="#team" data-page="team" class="nav-link">Team</a><button class="theme" id="th" aria-label="Toggle theme">Theme</button></div></nav>
+
+<main class="wrap pages">
+  <section class="page active" id="page-home" data-page-section="home">
+    <div class="hero-panel">
+      <p class="eyebrow">BIOINFORMATICS · DSA PROJECT</p>
+      <h1>Global DNA &amp; Protein Sequence Alignment</h1>
+      <p class="sub">Compare biological sequences and discover their optimal end-to-end alignment with the Needleman–Wunsch dynamic programming algorithm.</p>
+      <div class="hero-actions"><button class="btn" data-go-page="align">Start Alignment →</button><button class="btn alt" data-go-page="how">Explore the Algorithm</button></div>
+      <div class="feature-grid">
+        <article class="feature-card"><span>01</span><h3>Align sequences</h3><p>Compare DNA, RNA, or protein sequences using adjustable scoring values.</p></article>
+        <article class="feature-card"><span>02</span><h3>Understand the matrix</h3><p>Explore the dynamic programming scores and optimal traceback path.</p></article>
+        <article class="feature-card"><span>03</span><h3>Review results</h3><p>Check matches, mismatches, gaps, identity, and saved alignments.</p></article>
+      </div>
+    </div>
+    <div class="project-note"><h2>About this project</h2><p>This application demonstrates how Data Structures and Algorithms concepts can solve computational biology problems. Global alignment compares both sequences from beginning to end, using match scores, mismatch penalties, and gap penalties.</p></div>
+  </section>
+
+  <section class="page" id="page-align" data-page-section="align">
+    <div class="page-heading"><p class="eyebrow">WORKSPACE</p><h1>Sequence Aligner</h1><p class="sub">Enter two sequences, set your scoring values, and generate an optimal global alignment.</p></div>
+    <div class="tool" id="try">
+      <h2>Align two sequences</h2>
+      <div class="row">
+        <div><label for="s1">Sequence 1</label><input type="text" id="s1" value="GATTACA" autocomplete="off" spellcheck="false"></div>
+        <div><label for="s2">Sequence 2</label><input type="text" id="s2" value="GCATGCT" autocomplete="off" spellcheck="false"></div>
+      </div>
+      <div class="mode-row"><label for="seqType">Sequence type</label><select id="seqType"><option value="dna">DNA / RNA</option><option value="protein">Protein</option></select><span class="legend">DNA accepts A, C, G, T and U; protein accepts standard amino-acid letters.</span></div>
+      <div class="scores"><div><label for="ma">Match</label><input type="number" id="ma" value="1"></div><div><label for="mi">Mismatch</label><input type="number" id="mi" value="-1"></div><div><label for="gp">Gap</label><input type="number" id="gp" value="-2"></div></div>
+      <div class="actions"><button class="btn" id="go">Align sequences</button><button class="btn alt" id="save">Save result</button><button class="btn alt" id="download">Download TXT</button><button class="btn alt" id="ex1">DNA example</button><button class="btn alt" id="ex2">Protein example</button><span id="msg" role="alert"></span></div>
+      <div id="out" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-history" data-page-section="history">
+    <div class="page-heading"><p class="eyebrow">YOUR WORK</p><h1>Alignment History</h1><p class="sub">Saved results stay in this browser on this device. Load a previous result to view it again.</p></div>
+    <div id="historyList" class="history-list"><p class="legend">No saved alignments yet.</p></div><button class="btn alt" id="clearHistory" type="button">Clear history</button>
+  </section>
+
+  <section class="page" id="page-how" data-page-section="how">
+    <div class="page-heading"><p class="eyebrow">LEARN THE METHOD</p><h1>How it works</h1><p class="sub">The Needleman–Wunsch algorithm finds an optimal global alignment using dynamic programming.</p></div>
+    <div class="two info-grid"><div class="info-card"><h2>Algorithm steps</h2><ol class="flow"><li>Enter Sequence 1 and Sequence 2</li><li>Set match, mismatch and gap scores</li><li>Initialize the dynamic programming matrix</li><li>Fill the matrix using the best score at each cell</li><li>Trace back from the bottom-right cell</li><li>Generate the optimal alignment</li><li>Calculate and display the score</li></ol></div>
+    <div class="info-card"><h2>The recurrence</h2><p>Each cell takes the best of three moves: a diagonal step (match or mismatch), a step from above, or a step from the left (gap).</p><div class="rec mono">F(i,j) = max( F(i-1,j-1) + s(a<sub>i</sub>,b<sub>j</sub>),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F(i-1,j) + gap,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F(i,j-1) + gap )</div><p>The first row and column start at multiples of the gap penalty. Because global alignment covers both complete sequences, the final score is in the bottom-right cell.</p><h3>Complexity</h3><p><strong>Time:</strong> O(mn) &nbsp; <strong>Space:</strong> O(mn)</p><p class="legend">Here, m and n are the lengths of the two input sequences.</p></div></div>
+  </section>
+
+  <section class="page" id="page-team" data-page-section="team">
+    <div class="page-heading"><p class="eyebrow">PROJECT DETAILS</p><h1>Meet the Team</h1><p class="sub">Data Structures and Algorithms 3 (25CS2103E), K L Deemed to be University.</p></div>
+    <div class="team"><div>S. Hasini Reddy<br><small>2520030287</small></div><div>Anushka<br><small>2520030501</small></div><div>Akshaya<br><small>2520030516</small></div></div><div class="project-note"><p><strong>Project Guide</strong><br>Dr. Yamini Devi</p></div>
+  </section>
+</main>
+<footer><div class="wrap">Data Structures and Algorithms 3 (25CS2103E), K L Deemed to be University.</div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
