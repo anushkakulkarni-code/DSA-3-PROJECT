@@ -2,13 +2,6 @@
 
 DSA-3 (25CS2103E) project website.
 
-## Run in VS Code
-1. Open this folder: File > Open Folder > nw-aligner-website
-2. Install the "Live Server" extension (Ritwick Dey)
-3. Right-click index.html > Open with Live Server
-
-No extension? Just double-click index.html to open it in your browser.
-
 ## Files
 - index.html : page content
 - style.css  : styling (light and dark theme)
